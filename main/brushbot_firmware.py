@@ -1,7 +1,7 @@
 import utime
 from machine import Pin
 
-def run():
+def run_main():
     led = Pin(32, Pin.OUT)
     while True:
         led.value(1)
