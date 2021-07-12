@@ -32,11 +32,11 @@ class BrushbotOperationManager:
         # messages
         self.HEARTBEAT_MSG = {
             'id': Constants.MSG_ID_HEARTBEAT,
-            'mac': self.net.mac,
-            'ip': self.net.ip,
+            'mac': '',
+            'ip': '',
             'port': Constants.PORT
         }
-        self.HEARTBEAT_MSG_JSON = ujson.dumps(self.HEARTBEAT_MSG)
+        self.HEARTBEAT_MSG_JSON = None
         self.SENSOR_MSG = {
             'id': Constants.MSG_ID_SENSORS,
             'inaV': 0.0,
@@ -52,6 +52,10 @@ class BrushbotOperationManager:
     def init_net(self):
         self.net = Networking()
         self.net.init()
+        # populate heartbeat message with mac and received ip
+        self.HEARTBEAT_MSG['mac'] = self.net.mac
+        self.HEARTBEAT_MSG['ip'] = self.net.ip
+        self.HEARTBEAT_MSG_JSON = ujson.dumps(self.HEARTBEAT_MSG)
 
     def init_ina(self):
         try:
