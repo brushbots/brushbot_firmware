@@ -416,7 +416,6 @@ class INA219:
         else:
             return ', max expected amps: %.3fA' % max_expected_amps
 
-
 class DeviceRangeError(Exception):
     """This exception is throw to prevent invalid readings.
 

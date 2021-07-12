@@ -27,7 +27,6 @@ class VL6180:
             raise RuntimeError("Failure reset")
 
         # Recommended setup from the datasheet
-
         self.myWrite16(0x0207, 0x01)
         self.myWrite16(0x0208, 0x01)
         self.myWrite16(0x0096, 0x00)
@@ -59,7 +58,7 @@ class VL6180:
         self.myWrite16(0x01a7, 0x1f)
         self.myWrite16(0x0030, 0x00)
 
-#  writeReg System__Fresh_OUT_OF_Reset
+        # writeReg System__Fresh_OUT_OF_Reset
         # self.myWrite16(0x0016, 0x00),
 
     def default_settings(self):

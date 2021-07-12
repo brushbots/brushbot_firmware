@@ -66,7 +66,6 @@ class Logger:
     def exception(self, msg, *args):
         self.exc(sys.exc_info()[1], msg, *args)
 
-
 _level = INFO
 _loggers = {}
 
