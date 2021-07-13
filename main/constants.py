@@ -1,6 +1,6 @@
 class Constants:
     # networking
-    IP_MANAGER = '192.168.139.26'
+    IP_MANAGER = '192.168.139.1'
     IP_SUBNET = '255.255.255.0'
     IP_GATEWAY = '192.168.139.26'
     IP_BROADCAST = '192.168.139.255'

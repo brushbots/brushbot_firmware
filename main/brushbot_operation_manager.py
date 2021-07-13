@@ -14,8 +14,11 @@ class BrushbotOperationManager:
         # pins
         self.repl_button = machine.Pin(0, machine.Pin.IN, machine.Pin.PULL_UP)
         self.en_tca = machine.Pin(13, machine.Pin.OUT)
+        self.en_tca.value(0)
         self.en_vl = machine.Pin(19, machine.Pin.OUT)
+        self.en_vl.value(0)
         self.en_motor = machine.Pin(33, machine.Pin.OUT)
+        self.en_motor.value(0)
         self.I2C = machine.SoftI2C(machine.Pin(22), machine.Pin(21))
         # hardware and software components
         self.leds = None
@@ -39,6 +42,7 @@ class BrushbotOperationManager:
         self.HEARTBEAT_MSG_JSON = None
         self.SENSOR_MSG = {
             'id': Constants.MSG_ID_SENSORS,
+            'mac': '',
             'inaV': 0.0,
             'inaC': 0.0,
             'inaP': 0.0,
@@ -56,6 +60,7 @@ class BrushbotOperationManager:
         self.HEARTBEAT_MSG['mac'] = self.net.mac
         self.HEARTBEAT_MSG['ip'] = self.net.ip
         self.HEARTBEAT_MSG_JSON = ujson.dumps(self.HEARTBEAT_MSG)
+        self.SENSOR_MSG['mac'] = self.net.mac
 
     def init_ina(self):
         try:
@@ -132,10 +137,10 @@ class BrushbotOperationManager:
                 self.leds.led_neopixel.write()
                 self.timers.reset_leds()
                 print('BOM::Received and set led commands: ' + str(led0) + ', ' + str(led1))
-            elif udp_msg['id'] == MSG_ID_SENSORS_ON:
+            elif udp_msg['id'] == Constants.MSG_ID_SENSORS_ON:
                 self.en_vl.value(1)
                 print('BOM::Received command to turn on sensors')
-            elif udp_msg['id'] == MSG_ID_SENSORS_OFF:
+            elif udp_msg['id'] == Constants.MSG_ID_SENSORS_OFF:
                 self.en_vl.value(0)
                 print('BOM::Received command to turn off sensors')
 
