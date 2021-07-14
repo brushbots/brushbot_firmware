@@ -31,13 +31,13 @@ class BrushbotOperationManager:
         self.ina_voltage = 99.9
         self.ina_current = 99.9
         self.ina_power = 99.9
-        self.dist_readings = 8*[0]
+        self.dist_readings = 8*[-1.0]
         # messages
         self.HEARTBEAT_MSG = {
             'id': Constants.MSG_ID_HEARTBEAT,
             'mac': '',
             'ip': '',
-            'port': Constants.PORT
+            'port': Constants.UDP_PORT
         }
         self.HEARTBEAT_MSG_JSON = None
         self.SENSOR_MSG = {
@@ -46,7 +46,7 @@ class BrushbotOperationManager:
             'inaV': 0.0,
             'inaC': 0.0,
             'inaP': 0.0,
-            'ir': 8*[0.0]
+            'ir': self.dist_readings
         }
 
     def init_leds(self):
@@ -148,7 +148,7 @@ class BrushbotOperationManager:
         # heartbeat
         if self.timers.heartbeat_timedout():
             try:
-                self.net.socket.sendto(self.HEARTBEAT_MSG_JSON, (Constants.IP_MANAGER, Constants.PORT))
+                self.net.socket.sendto(self.HEARTBEAT_MSG_JSON, (Constants.IP_MANAGER, Constants.UDP_PORT))
                 print('BOM::Sent heartbeat message ' + str(self.HEARTBEAT_MSG_JSON))
             except Exception as e:
                 print('BOM::Failed to send heartbeat message ' + str(self.HEARTBEAT_MSG_JSON))
@@ -166,7 +166,7 @@ class BrushbotOperationManager:
                 self.ina_power = 99.9
                 print('BOM::INA219 sensor is malfunctioning (Exception: ' + str(e) + ')')
             # distance sensor readings
-            self.dist_readings = 8*[0]
+            self.dist_readings = 8*[-1.0]
             if self.en_vl.value() == 1:
                 for channel in range(8):
                     try:
@@ -185,7 +185,7 @@ class BrushbotOperationManager:
             sensor_msg['ir'] = self.dist_readings
             sensor_msg_json = ujson.dumps(sensor_msg)
             try:
-                self.net.socket.sendto(sensor_msg_json, (Constants.IP_MANAGER, Constants.PORT))
+                self.net.socket.sendto(sensor_msg_json, (Constants.IP_MANAGER, Constants.UDP_PORT))
                 print('BOM::Sent sensors message ' + str(sensor_msg_json))
             except Exception as e:
                 print('BOM::Failed to send sensors message ' + str(sensor_msg_json))

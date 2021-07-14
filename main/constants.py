@@ -30,7 +30,7 @@ class Constants:
     MAC_ROBOTS = [
         '98:f4:ab:1d:d5:e4'
         ]
-    PORT = 49152
+    UDP_PORT = 49152
     # communication
     MSG_ID_HEARTBEAT = 0
     MSG_ID_MOTORS_CMD = 1

@@ -24,8 +24,8 @@ class Networking:
         print('WiFi::Network config:', self.wlan.ifconfig())
 
     def init_socket(self):
-        print('Socket::Binding socket on %s to port %s' % (self.ip, Constants.PORT))
-        self.socket.bind((self.ip, Constants.PORT))
+        print('Socket::Binding socket on %s to port %s' % (self.ip, Constants.UDP_PORT))
+        self.socket.bind((self.ip, Constants.UDP_PORT))
         self.socket.settimeout(1)
         print('Socket::Done')
 
