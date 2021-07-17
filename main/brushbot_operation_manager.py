@@ -115,7 +115,7 @@ class BrushbotOperationManager:
             sys.exit()
 
     def udp_receive(self):
-        print('BOM::Receiving udp...')
+        print('BOM::Receiving udp')
         udp_msg_json = []
         try:
             udp_msg_json, addr = self.net.socket.recvfrom(256)

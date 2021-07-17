@@ -1,5 +1,6 @@
 import network
 import socket
+import time
 import main.secrets as secrets
 from main.constants import Constants
 
@@ -11,7 +12,9 @@ class Networking:
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     def connect_wifi(self):
-        print('WiFi::Connecting...')
+        print('WiFi::Attempting to connect to ' + secrets.NETWORK_SSID)
+        self.wlan.active(False)
+        time.sleep(1)
         self.wlan.active(True)
         self.mac = '{:02x}:{:02x}:{:02x}:{:02x}:{:02x}:{:02x}'.format(*(self.wlan.config('mac')))
         print('WiFi::MAC address ' + self.mac)
