@@ -14,7 +14,7 @@ class Networking:
     def connect_wifi(self):
         print('WiFi::Attempting to connect to ' + secrets.NETWORK_SSID)
         self.wlan.active(False)
-        time.sleep(1)
+        time.sleep(1) # pause to make wlan turn off before turning it back on
         self.wlan.active(True)
         self.mac = '{:02x}:{:02x}:{:02x}:{:02x}:{:02x}:{:02x}'.format(*(self.wlan.config('mac')))
         print('WiFi::MAC address ' + self.mac)

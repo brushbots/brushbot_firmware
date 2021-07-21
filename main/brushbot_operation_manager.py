@@ -1,5 +1,6 @@
 import machine
 import ujson
+import time
 from main.constants import Constants
 from main.leds import LEDs
 from main.networking import Networking
@@ -100,14 +101,15 @@ class BrushbotOperationManager:
 
     def initialize(self):
         self.init_leds() # init leds
-        self.leds.blink_state_led(n=1, dt=1) # start initialization: blink state led once
+        self.leds.blink_state_led(n=2, dt=0.25) # start initialization: blink state led 2 times
         self.init_net() # connect to wifi
         self.init_ina() # init power sensor
         self.init_tca() # init I2C multiplexer
         self.init_vl() # init and test distance sensors
         self.init_drv() # init motor controller
         self.init_timers() # init message and loop timers
-        self.leds.blink_state_led(n=2, dt=0.25) # end initialization: blink state led twice
+        time.sleep(1) # pause before ending initialization
+        self.leds.blink_state_led(n=3, dt=0.25) # end initialization: blink state led 3 times
 
     def repl_handling(self):
         if self.repl_button.value() == 0:

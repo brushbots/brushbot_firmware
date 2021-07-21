@@ -22,9 +22,9 @@ class LEDs:
     def blink_state_led(self, n=1, dt=1):
         for i in range(n):
             self.led_state.value(0)
-            utime.sleep(dt)
+            utime.sleep(dt/2.0)
             self.led_state.value(1)
-            utime.sleep(dt)
+            utime.sleep(dt/2.0)
         self.led_state.value(0)
 
     def battery_indicator(self, v):
