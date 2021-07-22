@@ -1,13 +1,13 @@
 class Constants:
     # networking
-    IP_MANAGER = '192.168.0.2'
+    IP_MANAGER = '192.168.139.1'
     IP_SUBNET = '255.255.255.0'
-    IP_GATEWAY = '192.168.0.1'
-    IP_BROADCAST = '192.168.0.255'
+    IP_GATEWAY = '192.168.139.26'
+    IP_BROADCAST = '192.168.139.255'
     IP_DNS = '8.8.8.8'
     IP_ROBOTS = [
-        '192.168.0.101',
-        '192.168.0.102'
+        '192.168.139.101',
+        '192.168.139.102'
         ]
     MAC_ROBOTS = [
         '98:f4:ab:1d:d5:e4',
