@@ -32,7 +32,7 @@ class BrushbotOperationManager:
         self.ina_voltage = 99.9
         self.ina_current = 99.9
         self.ina_power = 99.9
-        self.dist_readings = 8*[-1.0]
+        self.dist_readings = 8*[99.9]
         # messages
         self.HEARTBEAT_MSG = {
             'id': Constants.MSG_ID_HEARTBEAT,
