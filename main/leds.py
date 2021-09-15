@@ -1,6 +1,7 @@
 import machine
 import neopixel
 import utime
+from main.constants import Constants
 
 class LEDs:
     def __init__(self):
@@ -8,8 +9,6 @@ class LEDs:
         self.led_neopixel = None
         self.led_state_battery = 0
         self.last_blink = utime.ticks_ms()
-        self.V_BATT_THRESH = [3.2, 3.5]
-        self.DT = [500, 2000]
 
     def init(self):
         self.led_state = machine.Pin(32, machine.Pin.OUT)
@@ -29,7 +28,7 @@ class LEDs:
 
     def battery_indicator(self, v):
         try:
-            dt = self.DT[[v<vi for vi in self.V_BATT_THRESH].index(True)]
+            dt = Constants.DT[[v<vi for vi in Constants.V_BATT_THRESH].index(True)]
             if utime.ticks_diff(utime.ticks_ms(), self.last_blink) > dt:
                 self.led_state_battery = 1 - self.led_state_battery
                 self.last_blink = utime.ticks_ms()

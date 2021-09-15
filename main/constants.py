@@ -50,6 +50,7 @@ class Constants:
         '98:f4:ab:1d:d6:04'
         ]
     UDP_PORT = 49152
+
     # communication
     MSG_ID_HEARTBEAT = 0
     MSG_ID_MOTORS_CMD = 1
@@ -57,3 +58,14 @@ class Constants:
     MSG_ID_SENSORS_ON = 3
     MSG_ID_SENSORS_OFF = 4
     MSG_ID_SENSORS = 5
+
+    # timeouts
+    TIMEOUT_LOOP = 20
+    TIMEOUT_HEARTBEAT = 2000
+    TIMEOUT_MOTORS = 1000
+    TIMEOUT_LEDS = 1000
+    TIMEOUT_SENSORS = 100
+
+    # battery led indicator
+    V_BATT_THRESH = [3.2, 3.5]
+    DT = [500, 2000]
